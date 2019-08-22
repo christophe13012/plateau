@@ -1,0 +1,179 @@
+<html>
+
+    <head>
+
+        <title>Plateau tour par tour</title>
+        <meta name="description" content="tour par tour">
+
+
+
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+        <!-- Custom styles -->
+        <link  rel="stylesheet"  href="style.css">
+
+    </head>
+    <body>
+        <section id="principal">
+            <h1 id="titrePrincipal">Jeux tour par tour</h1>
+            <section id="jeu">
+                <h2 id="titreSecondaire">Choisissez vos personnages :</h2>
+                <div id="choixPerso" class="container">
+                    <div class="row justify-content-between">
+                        <div id="perso1" class="col-sm-5">
+                            <form id="formPerso1">
+                                <div class="form-group row">
+                                    <label for="inputNomPerso1" class="col-sm-4 col-form-label">Votre nom :</label>
+                                    <div class="col-sm-8">
+                                        <input  type="text" class="form-control" id="inputNomPerso1" placeholder="">
+                                    </div>
+                                </div>
+                                <div id="messageAvatar1"></div>
+                                <div class="form-group row">
+                                    <label for="avatarPerso1" class="col-sm-4 col-form-label">Votre avatar :</label>
+                                    <div class="col-sm-8">
+                                        <img id="avatarSelect0" src="avatar/001-girl.png">
+                                        <img id="avatarSelect1" src="avatar/006-child-3.png">
+                                        <img id="avatarSelect2" src="avatar/004-girl-1.png">
+                                        <img id="avatarSelect3" src="avatar/002-child.png">
+                                        <img id="avatarSelect4" src="avatar/007-child-4.png">
+                                    </div>
+                                </div>
+                                <button id="validationNomAvatar1" type="submit" class="btn btn-primary btn-lg btn-block">Prêt</button>
+                            </form>
+                        </div>
+
+                        <div id="espace" class="col-sm-1">
+                        </div>
+                        <div id="perso2" class="col-sm-5">
+                            <form id="formPerso2">
+                                <div class="form-group row">
+                                    <label for="inputNomPerso2" class="col-sm-4 col-form-label">Votre nom :</label>
+                                    <div class="col-sm-8">
+                                        <input   type="text" class="form-control" id="inputNomPerso2" placeholder="">
+                                    </div>
+                                </div>
+                                <div id="messageAvatar2"></div>
+                                <div class="form-group row">
+                                    <label for="avatarPerso2" class="col-sm-4 col-form-label">Votre avatar :</label>
+                                    <div class="col-sm-8">
+                                        <img id="avatarSelect5" src="avatar/001-girl.png">
+                                        <img id="avatarSelect6" src="avatar/006-child-3.png">
+                                        <img id="avatarSelect7" src="avatar/004-girl-1.png">
+                                        <img id="avatarSelect8" src="avatar/002-child.png">
+                                        <img id="avatarSelect9" src="avatar/007-child-4.png">
+                                    </div>
+                                </div>
+                                <button id="validationNomAvatar2" type="submit" class="btn btn-primary btn-lg btn-block">Prêt</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div id="detailPerso" class='container'>
+                    <div class="row justify-content-between">
+                        <div id="detailPersos" class="col-sm-5">
+                            <p><img id="imgAvatar1"><span id="nomPerso1"></span></p>
+                            <p>Points de vie : <span id="pointVie1"></span></p>
+                            <p> Arme : <img id="imgArme1"><span id="arme1"> </span></p>
+                            <div id="derouleJoueur1">
+                                <p id="actionJoueur1"></p>
+                                <p id="resultatJoueur1"></p>
+                            </div>
+                        </div>
+                        <div id="detailPersos" class="col-sm-5">
+                            <p><img id="imgAvatar2"><span id="nomPerso2"></span></p>
+                            <p>Points de vie : <span id="pointVie2"></span></p>
+                            <p> Arme : <img id="imgArme2"><span id="arme2"> </span></p>
+                            <div id="derouleJoueur2">
+                                <p id="actionJoueur2"></p>
+                                <p id="resultatJoueur2"></p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div id="controleJeu" class="container text-center">
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button id='passerTour'  type="button" class="btn btn-secondary btn-lg">Passer son tour</button>
+                        <button id="attaquer" type="button" class="btn btn-danger btn-lg disabled">Attaquer</button>
+                        <button id="defendre" type="button" class="btn btn-warning btn-lg disabled">Défendre</button>
+                    </div>
+                </div>
+                <div id="plateau">
+                </div>
+
+
+                <!-- Modal début combat -->
+                <div class="modal fade" id="modalDebutCombat" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Le combat va commencer !!!</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Les deux joueurs se sont rencontrés, ils vont donc devoir combatre</p> 
+                                <p>Chacun choisit d'attaquer ou de defendre contre le prochain coup</p> 
+                                <p><span id="premierCombattant"></span> commence le combat</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-success btn-lg" data-dismiss="modal">C'est parti !</button>
+                                <!--      <button type="button" class="btn btn-primary">Save changes</button>   -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- fin combat 1 vainqueur -->
+            <div id="finCombatVainqueur" class="container">
+                <div class="header">
+                    <h1 class="display-4">Le combat est fini !!!</h1>
+                </div>
+                <p><span id="vainqueur"></span> a gagné le combat</p>
+                <p>Bravo !<img id="imgVainqueur"><img id="imgCoupe" src='armes/cup.png'></p>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <button id="rejouer" type="button" class="btn btn-success btn-lg float-right">Rejouer</button> 
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- fin combat 2 perdant -->
+            <div id="finCombatSansVainqueur" class="container">
+                <div class="header">
+                    <h1 class="display-4">Le combat est fini !!!</h1>
+                </div>
+                <p>Pas de vainqueur, les deux joueurs sont morts suite à leur derniere attaque ...</p>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <button id="rejouerNul" type="button" class="btn btn-success btn-lg float-right">Rejouer</button> 
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+        </section>
+
+
+
+        <script src="JS/index.js"></script>
+
+
+
+
+
+    </body>
+</html>
